@@ -1292,7 +1292,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.querySelectorAll("#minutes").forEach(el => el.textContent = String(minutes).padStart(2, "0"));
 			document.querySelectorAll("#seconds").forEach(el => el.textContent = String(seconds).padStart(2, "0"));
 		}
-
+	</script>
+		<script>
 		// Atualiza o contador a cada segundo
 		setInterval(updateCountdown, 1000);
 
