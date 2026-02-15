@@ -763,8 +763,8 @@ document.addEventListener("DOMContentLoaded", function () {
 									<span style="color:black">(Pack com 6)</span>
 									 <span class="precoPromocao"style="color:black">R$ 69,90<span style="color:black"> por
 									<span class="preco"style="color:black"> R$ 49,92 </span>
-									 </sa>
-									</div>
+									 </div
+									</a>
 						
 								<div class="fotoProduto">
 									<figure>
@@ -1369,9 +1369,36 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		}
-				// Executa a função a cada 15 segundos
 		setInterval(diminuirEstoque, 15000);
 	</script>
+
+	<script>
+		function setCookie(name, value, days) {
+			let expires = new Date(Date.now() + days * 864e5).toUTCString();
+			document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+		}
+
+		function getCookie(name) {
+			return document.cookie.split('; ').reduce((acc, cookie) => {
+				let [key, val] = cookie.split('=');
+				return key === name ? val : acc;
+			}, "");
+		}
+
+		function checkCookie(nome) {
+			return getCookie(nome) !== "";
+		}
+
+		async function fetchLocation() {
+			try {
+				let response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+				let { city = "Local Desconhecido", region = "Local Desconhecido" } = await response.json();
+				return { city, region };
+			} catch (error) {
+				console.error('Erro ao obter a localização:', error);
+				return { city: "Local Desconhecido", region: "Local Desconhecido" };
+			}
+		}
 			
 		const estados_input = {
 			RO: "Rondônia",
